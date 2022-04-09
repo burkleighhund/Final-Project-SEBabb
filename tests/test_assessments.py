@@ -9,13 +9,14 @@ def allowed_parameters():
     return instruments
 
 
-def test_can_create_instructor(allowed_parameters):
+def test_instructor_instrument_validation(allowed_parameters):
     # arrange, act
     teacher = Instructor("John", "Doe", "Band", "Tuba")
 
     # assert
     assert teacher.instrument in allowed_parameters
 
+#can use repository to really refine this testing
 def given_parameters():
     grade = ["Middle School", "High School", "College"]
     return grade 
