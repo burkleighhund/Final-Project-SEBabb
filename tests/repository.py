@@ -1,9 +1,13 @@
 # making use of type hints: https://docs.python.org/3/library/typing.html
+from lib2to3.pytree import Base
 from typing import List, Set
 
 from tests.orm import orm
 from music.assessment import Instructor, Student
 from abc import ABC, abstractmethod
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 
 
@@ -119,6 +123,8 @@ class SqlAlchemyRepository(AbstractRepository):
         super().__init__()
 
         self.engine = None
+        Base= declarative_base
+
 
         # create db connection
         if url != None:
