@@ -10,7 +10,7 @@ This project is meant to provide an easier, more affordable/accessible way to su
 *The Supporting Files/Constraints
 
 
-    #-**pytest**: This is a testing framework based on Python that is mainly used to write API test cases (This is the API portion of my project)
+    -**pytest**: This is a testing framework based on Python that is mainly used to write API test cases (This is the API portion of my project)
 
     -**SQLalchemy**: This is the Python SQL toolkit and object relational mapper I used in my project to help me utilize SQL without connecting straight to SQlite browser.
 
