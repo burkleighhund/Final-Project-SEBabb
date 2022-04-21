@@ -31,4 +31,19 @@ This project is meant to provide an easier, more affordable/accessible way to su
 
 Instead of connecting straight to an SQlite browser, I attempted to build a pseudo table inside a Virtual Environment. I focused mostly on the actual testing implementation though rather than the full program for this project.
 
+Some of the constraints limit the type of information that can be input, as well as limiting what instruments/vocal parts can be chosen. However, this section can be expanded upon later once proper testing and construction on the true database are complete. 
 
+
+*Assumptions Made:
+
+**There were several assumptions made about this project:
+
+    1)That the user would be either a Student or and Instructor in the music field (can also be an administrator/facilitator if there is no specified instructor).
+
+    2)The user would be using this for the academic music field, not for any other subject.
+
+    3)This program would be used only in a school or private lesson setting not in another setting (i.e. a bank or a hospital)
+
+    4)The user would be inputting the proper information when prompted, not leaving options blank or putting in null characters (there is testing paramaters set up for this in the event that they do attempt one of the above, the program will just exit to the main screen).
+
+    5)There will only be tables of the input material, not of random information.
