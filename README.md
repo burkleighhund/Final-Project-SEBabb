@@ -7,7 +7,7 @@ Music Lessons On Demand
 
 This project is meant to provide an easier, more affordable/accessible way to supplement music lessons across grade levels. Specifically, this program should let a student find the lessons they need based on instructor, instrument, and grade level. It should also allow instructors to post content based off of the same constraints.
 
-**The Supporting Files/Constraints*
+#**The Supporting Files/Constraints*
 
 
 -**pytest**: This is a testing framework based on Python that is mainly used to write API test cases (This is the API portion of my project)
