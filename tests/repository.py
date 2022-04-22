@@ -1,9 +1,8 @@
 # making use of type hints: https://docs.python.org/3/library/typing.html
 from lib2to3.pytree import Base
 from typing import List, Set
-
-from tests.orm import orm
-from music.assessment import Instructor, Student
+import py
+from assessment import Student, Instructor
 from abc import ABC, abstractmethod
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -11,7 +10,6 @@ from sqlalchemy.orm import sessionmaker
 
 
 
-#ASK DR. BABB ABOUT THIS, SUPER LOST!!
 
 class AbstractRepository(ABC):
     def __init__(self):

@@ -1,26 +1,49 @@
 import string
+import py
+from pytest import Session
 import sqlalchemy as db
 from unittest import result
 from assessment import Instructor, Student
 from sqlalchemy_utils import database_exists, create_database
+import logging
+from typing import Text
+from sqlalchemy import (
+    Table,
+    MetaData,
+    Column,
+    Integer,
+    String,
+    insert
+)
+
+from sqlalchemy.orm import mapper
+
+logger = logging.getLogger(__name__)
+
 
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
 engine = db.create_engine('sqlite:///musicallessons.db', echo = True)
 connection=engine.connect()
 meta = MetaData()
 
-Students=db.Table(
-    'Students', meta,
-    db.Column('Id', Integer, primary_key = True),
-    db.Column('Fname', String),
-    db.Column('Lname', String),
-    db.Column('Grade', String),
-    db.Column('Discipline', String),
-    db.Column('Instrument', String)
+
+def start_mappers():
+    logger.info("string mappers")
+    music_learners = mapper(Student, Student)
+    music_teachers = mapper(Instructor, Instructor)
+
+Student=Table(
+    'Student', meta,
+    Column('Id', Integer, primary_key = True),
+    Column('Fname', String),
+    Column('Lname', String),
+    Column('Grade', String),
+    Column('Discipline', String),
+    Column('Instrument', String)
     )
     
-Instructors=db.Table(
-    'Instructors', meta,
+Instructor=Table(
+    'Instructor', meta,
     Column('Id', Integer, primary_key = True),
     Column('Fname', String),
     Column('Lname', String),
@@ -29,9 +52,7 @@ Instructors=db.Table(
     )
 
 def main ():
-
-    student=[]
-    instructor=[]
+    meta.create_all(engine)
 
     while True:
         print("Is this a student or instructor? \n Enter done to exit:")
@@ -49,9 +70,7 @@ def main ():
             discipline = str(input())
             print("What is the student's instrument/voice classification?")
             instrument = str(input())
-            s1 = Student(fname,lname,grade,discipline,instrument)
-            student.append(s1)
-            ins=Students.insert().values(Id=id, Fname=fname, Lname=lname, Grade=grade, Discipline=discipline, Instrument=instrument)
+            ins=insert(Student).values(Id=id, Fname=fname, Lname=lname, Grade=grade, Discipline=discipline, Instrument=instrument)
             conn=engine.connect()
             result=conn.execute(ins)
         
@@ -67,20 +86,16 @@ def main ():
             teaches= str(input())
             print("What is their specialty?")
             dicipline = str(input())
-            #check out session info from barky/adapters
-            i1 = Instructor(fname,lname,teaches,dicipline)
-        #   p1.get_instructor()
-            instructor.append(i1)
-            ins=Instructors.insert().values(Id=id, Fname=fname, Lname=lname, Teaches=teaches, Discipline=discipline)
+            ins=insert(Instructor).values(Id=id, Fname=fname, Lname=lname, Teaches=teaches, Discipline=discipline)
             conn=engine.connect()
             result=conn.execute(ins)
         
         else: break
         
-    for obj in instructor:
+    for obj in Instructor:
         obj.get_instructor()
 
-    for obj in student:
+    for obj in Student:
         obj.get_student()
   
 if __name__ == '__main__':
